@@ -9,7 +9,7 @@
 	"inRepository": true,
 	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2026-03-21 04:17:25"
+	"lastUpdated": "2026-03-21 14:16:34"
 }
 
 /*
@@ -180,6 +180,22 @@ function buildItem(doc, url, accessionNum, fileFirst, files, docFirst) {
 	item.url = url;
 
 
+
+	/* PDF — click the Generate PDF button to trigger the browser's native
+	   download. The PDF lands in the Downloads folder; drag it onto the Zotero
+	   item to attach it. This works because the button click runs in the page
+	   context with full session cookies, unlike ZU.doPost which routes through
+	   Zotero's background process and cannot send cookies. */
+	var generateBtn = doc.querySelector("button.generate");
+	if (generateBtn) {
+		try {
+			generateBtn.click();
+			Zotero.debug("FERC eLibrary: clicked Generate PDF for " + accessionNum);
+		}
+		catch (e) {
+			Zotero.debug("FERC eLibrary: could not click Generate PDF button: " + e);
+		}
+	}
 
 	item.complete();
 }
