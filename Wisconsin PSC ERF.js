@@ -2,14 +2,14 @@
 	"translatorID": "e2b3c4d5-f6a7-4b8c-9d0e-1f2a3b4c5d6e",
 	"label": "Wisconsin PSC ERF",
 	"creator": "Your Name",
-	"target": "https?://apps\\.psc\\.wi\\.gov/ERF/ERFsearch/content/documentInfo\\.aspx",
+	"target": "https?://apps\\.psc\\.wi\\.gov/ERF/ERF(search/content/documentInfo|view/viewdoc)\\.aspx",
 	"minVersion": "5.0",
 	"maxVersion": "",
 	"priority": 100,
 	"inRepository": true,
 	"translatorType": 4,
 	"browserSupport": "gcsibv",
-	"lastUpdated": "2026-04-08 18:43:45"
+	"lastUpdated": "2026-05-12 16:40:11"
 }
 
 /*
@@ -88,7 +88,7 @@ function doWeb(doc, url) {
 	item.court        = "Wisconsin Public Service Commission";
 	item.docketNumber = docketId;
 	item.dateDecided  = parseDate(receivedDate);
-	item.url          = url;
+	item.url          = docId ? "https://apps.psc.wi.gov/ERF/ERFview/viewdoc.aspx?docid=" + docId : url;
 
 	// Extra
 	var extraLines = [];
